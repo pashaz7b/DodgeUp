@@ -1,7 +1,7 @@
 public class Human {
 
         private final int width = 400;
-        private final int height = 600;
+        private final int height = 700;
         private int bodyColor;
         private int headColor;
         private float bodyWidth;
@@ -16,8 +16,8 @@ public class Human {
 
         public void humanBody() {
             // Creating character
-            bodyColor = DodgeUp.pApplet.color(255, 0, 0);
-            headColor = DodgeUp.pApplet.color(255, 0, 0);
+            bodyColor = Main.pApplet.color(255, 0, 0);
+            headColor = Main.pApplet.color(255, 0, 0);
             bodyWidth = 20;
             bodyHeight = 30;
             headWidth = 20;
@@ -30,32 +30,32 @@ public class Human {
 
         public void humanFPS() {
             // Update position based on mouse cursor
-            xPos = DodgeUp.pApplet.mouseX;
-            yPos = DodgeUp.pApplet.mouseY;
+            xPos = Main.pApplet.mouseX;
+            yPos = Main.pApplet.mouseY;
 //        head position
             headXPos = xPos;
             // Draw body
-            DodgeUp.pApplet.stroke(0);
-            DodgeUp.pApplet.fill(bodyColor);
-            DodgeUp.pApplet.rectMode(DodgeUp.pApplet.CENTER);
-            DodgeUp.pApplet.rect(xPos, 500, bodyWidth, bodyHeight);
+            Main.pApplet.stroke(0);
+            Main.pApplet.fill(bodyColor);
+            Main.pApplet.rectMode(Main.pApplet.CENTER);
+            Main.pApplet.rect(xPos, 500, bodyWidth, bodyHeight);
             // Draw head
-            DodgeUp.pApplet.fill(headColor);
-            DodgeUp.pApplet.ellipse(headXPos, 477, headWidth, headHeight);
+            Main.pApplet.fill(headColor);
+            Main.pApplet.ellipse(headXPos, 477, headWidth, headHeight);
             // Draw Deadpool's face details
             drawDeadpoolFace();
             // Draw legs
-            DodgeUp.pApplet.strokeWeight(4);
-            DodgeUp.pApplet.line(xPos - bodyWidth / 4, 515, xPos - bodyWidth / 4, 530);
-            DodgeUp.pApplet.line(xPos + bodyWidth / 4, 515, xPos + bodyWidth / 4, 530);
+            Main.pApplet.strokeWeight(4);
+            Main.pApplet.line(xPos - bodyWidth / 4, 515, xPos - bodyWidth / 4, 530);
+            Main.pApplet.line(xPos + bodyWidth / 4, 515, xPos + bodyWidth / 4, 530);
         }
 
         private void drawDeadpoolFace() {
-            DodgeUp.pApplet.fill(0);
-            DodgeUp.pApplet.ellipse(headXPos - headWidth / 4, 477 - headHeight / 4, headWidth / 4, headHeight / 4);
-            DodgeUp.pApplet.ellipse(headXPos + headWidth / 4, 477 - headHeight / 4, headWidth / 4, headHeight / 4);
-            DodgeUp.pApplet.strokeWeight(1);
-            DodgeUp.pApplet.line(headXPos - headWidth / 2, 477, headXPos + headWidth / 2, 477);
+            Main.pApplet.fill(0);
+            Main.pApplet.ellipse(headXPos - headWidth / 4, 477 - headHeight / 4, headWidth / 4, headHeight / 4);
+            Main.pApplet.ellipse(headXPos + headWidth / 4, 477 - headHeight / 4, headWidth / 4, headHeight / 4);
+            Main.pApplet.strokeWeight(1);
+            Main.pApplet.line(headXPos - headWidth / 2, 477, headXPos + headWidth / 2, 477);
         }
 
         // ...remaining methods unchanged

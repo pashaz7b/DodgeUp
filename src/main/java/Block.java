@@ -1,9 +1,8 @@
-import java.util.ArrayList;
-import processing.core.PApplet;
+import java.util.*;
 
-public class Block implements makeBlock, showBlock {
+public class Block implements BlockInterface {
     public static ArrayList<Block> blocks= new ArrayList<>();
-    private final int width  = 60;
+    private final int width  = 40;
     private final int height = 30;
     public float speedY = -50;
     private float BlockX;
@@ -22,29 +21,37 @@ public class Block implements makeBlock, showBlock {
     }
 
     public void makeBlocks() {
-        for (int i = 0 ; i<100 ; i++){
-            blocks.add(new Block(DodgeUp.pApplet.random(10,70),speedY, (int) DodgeUp.pApplet.random(0),(int) DodgeUp.pApplet.random(255),(int) DodgeUp.pApplet.random(0)));
-            speedY -= 50;
-            blocks.add(new Block(DodgeUp.pApplet.random(110,170),speedY,(int) DodgeUp.pApplet.random(255),(int) DodgeUp.pApplet.random(120),(int) DodgeUp.pApplet.random(255)));
-            speedY -= 50;
-            blocks.add(new Block(DodgeUp.pApplet.random(210,280),speedY,(int) DodgeUp.pApplet.random(0),(int) DodgeUp.pApplet.random(255),(int) DodgeUp.pApplet.random(255)));
-            speedY -= 50;
-            blocks.add(new Block(DodgeUp.pApplet.random(320,390),speedY,(int) DodgeUp.pApplet.random(255),(int) DodgeUp.pApplet.random(255),(int) DodgeUp.pApplet.random(255)));
-            speedY -= 50;
+        int blockCount = 1000;
+        float initialSpeedY = -50;
+        float speedIncrement = 50;
+
+        for (int i = 0; i < blockCount; i++) {
+            float randomX = Main.pApplet.random(10, 390);
+            float randomY = speedY;
+
+            // Generate random RGB color values
+            int randomR = (int) Main.pApplet.random(256);
+            int randomG = (int) Main.pApplet.random(256);
+            int randomB = (int) Main.pApplet.random(256);
+
+            blocks.add(new Block(randomX, randomY, randomR, randomG, randomB));
+
+            speedY -= speedIncrement;
         }
     }
 
     public void showBlocks() {
-        for (Block tempBlock : blocks){
-            DodgeUp.pApplet.fill(tempBlock.colorB,tempBlock.colorG,tempBlock.colorB);
-            DodgeUp.pApplet.rect(tempBlock.BlockX,tempBlock.BlockY,width,height);
+        int alpha = 150; // Set a constant alpha value for all blocks
+
+        for (Block tempBlock : blocks) {
+            Main.pApplet.fill(tempBlock.colorR, tempBlock.colorG, tempBlock.colorB, alpha);
+            Main.pApplet.rect(tempBlock.BlockX, tempBlock.BlockY, width, height);
         }
     }
 
     public void moveBlock() {
         for (Block block : blocks){
-            block.setBlockY(getBlockY()+10);
-
+            block.setBlockY(getBlockY()+15);
         }
     }
 
@@ -70,5 +77,25 @@ public class Block implements makeBlock, showBlock {
 
     public void setBlockX(float blockX) {
         BlockX = blockX;
+    }
+
+    public static void setBlocks(ArrayList<Block> blocks) {
+        Block.blocks = blocks;
+    }
+
+    public void setSpeedY(float speedY) {
+        this.speedY = speedY;
+    }
+
+    public void setColorR(int colorR) {
+        this.colorR = colorR;
+    }
+
+    public void setColorG(int colorG) {
+        this.colorG = colorG;
+    }
+
+    public void setColorB(int colorB) {
+        this.colorB = colorB;
     }
 }
