@@ -1,5 +1,5 @@
-import processing.core.PApplet;
-import processing.core.PFont;
+
+import processing.core.*;
 
 public class Main extends PApplet {
     public static PApplet pApplet;
@@ -67,28 +67,62 @@ public class Main extends PApplet {
     public void drawStartMenu() {
         background(0);
         textAlign(CENTER);
+
+        // Title
+        textSize(40);
+        fill(255);
+        text("Welcome to the Game!", width / 2, height / 2 - 100);
+
+        // Button background
+        noStroke();
+        fill(128, 3, 5);
+        rectMode(CENTER);
+        rect(width / 2, height / 2, 200, 60, 10);
+
+        // Button text
         textSize(30);
         fill(255);
-        text("Welcome to the Game!", width / 2, height / 2 - 50);
-        text("Click to Start", width / 2, height / 2);
+        text("Click to Start", width / 2, height / 2 + 10);
+
+        // Additional features
+        textSize(20);
+        fill(255);
+        text("Controls:", width / 2, height / 2 + 100);
+        text("Use the mouse to move", width / 2, height / 2 + 130);
+        text("Avoid the falling blocks", width / 2, height / 2 + 200);
     }
 
+
     public void gameOver(int score) {
-        background(0);
+        background(255, 0, 0); // Set background color to red
         textAlign(CENTER);
+        textSize(40);
+        fill(255);
+        text("Game Over", width / 2, height / 2 - 100);
+
         textSize(30);
         fill(255);
-        text("Game Over", width / 2, height / 2 - 50);
         text("Your Score: " + score, width / 2, height / 2);
+
+        // Calculate the time played
+        int minutes = frameCount / 60;
+        int seconds = frameCount % 60;
+        String timePlayed = String.format("Time Played: %02d:%02d", minutes, seconds);
+        fill(255);
+        textSize(20);
+        text(timePlayed, width / 2, height / 2 + 50);
 
         if (HighScore) {
             fill(52, 143, 235);
-            text("New High Score!", width / 2, height / 2 + 50);
+            textSize(30);
+            text("New High Score!", width / 2, height / 2 + 100);
         }
 
-        fill(255, 0, 0);
+        fill(255);
         textSize(20);
-        text("Click to Exit", width / 2, height / 2 + 100);
+        text("Click to Exit", width / 2, height / 2 + 150);
+
+        noLoop();
     }
 
     public void mouseClicked() {
