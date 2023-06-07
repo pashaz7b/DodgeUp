@@ -1,4 +1,4 @@
-public class Human {
+public class Human implements HumanInterface {
 
         private final int width = 400;
         private final int height = 700;

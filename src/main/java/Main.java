@@ -1,4 +1,3 @@
-
 import processing.core.*;
 
 public class Main extends PApplet {
@@ -25,6 +24,7 @@ public class Main extends PApplet {
     public void draw() {
         if (startMenu) {
             drawStartMenu();
+            keyPressed();
         } else if (!gameOver) {
             background.setBackGround();
             float humanC = human.getHeadXPos();
@@ -69,29 +69,37 @@ public class Main extends PApplet {
         textAlign(CENTER);
 
         // Title
-        textSize(40);
+        textSize(38);
         fill(255);
         text("Welcome to the Game!", width / 2, height / 2 - 100);
 
-        // Button background
+        // Start button background
         noStroke();
         fill(128, 3, 5);
         rectMode(CENTER);
         rect(width / 2, height / 2, 200, 60, 10);
 
-        // Button text
+        // Start button text
         textSize(30);
         fill(255);
         text("Click to Start", width / 2, height / 2 + 10);
 
-        // Additional features
-        textSize(20);
-        fill(255);
-        text("Controls:", width / 2, height / 2 + 100);
-        text("Use the mouse to move", width / 2, height / 2 + 130);
-        text("Avoid the falling blocks", width / 2, height / 2 + 200);
-    }
+        // Exit button background
+        noStroke();
+        fill(128, 3, 5);
+        rectMode(CENTER);
+        rect(width / 2, height / 2 + 100, 200, 60, 10);
 
+        // Exit button text
+        textSize(30);
+        fill(255);
+        text("Click to Exit", width / 2, height / 2 + 110);
+
+        // Help menu button
+        textSize(20);
+        fill(200);
+        text("Press 'h' for help menu", width / 2, height / 2 + 200);
+    }
 
     public void gameOver(int score) {
         background(255, 0, 0); // Set background color to red
@@ -120,17 +128,59 @@ public class Main extends PApplet {
 
         fill(255);
         textSize(20);
-        text("Click to Exit", width / 2, height / 2 + 150);
+        text("Click toExit", width / 2, height / 2 + 150);
 
         noLoop();
     }
 
     public void mouseClicked() {
         if (startMenu) {
-            startMenu = false;
+            // Check if the mouse was clicked inside the start button
+            if (mouseX > width / 2 - 100 && mouseX < width / 2 + 100 && mouseY > height / 2 - 30 && mouseY < height / 2 + 30) {
+                startMenu = false;
+            }
+
+            // Check if the mouse was clicked inside the exit button
+            if (mouseX > width / 2 - 100 && mouseX < width / 2 + 100 && mouseY > height / 2 + 70 && mouseY < height / 2 + 130) {
+                exit();
+            }
         } else if (gameOver) {
             exit();
         }
+    }
+
+    public void keyPressed() {
+        if (key == 'h') {
+            drawHelpMenu();
+        }
+    }
+
+    public void drawHelpMenu() {
+        background(0);
+        textAlign(CENTER);
+
+        // Title
+        textSize(40);
+        fill(255);
+        text("Help Menu", width / 2, height / 2 - 100);
+
+        // Controls
+        textSize(20);
+        fill(255);
+        text("Controls:", width / 2, height / 2);
+        text("Use the mouse to move", width / 2, height / 2 + 30);
+        text("Avoid the falling blocks", width / 2, height / 2 + 60);
+
+        // Scoring
+        textSize(20);
+        fill(255);
+        text("Scoring:", width / 2, height / 2 + 120);
+        text("Every 10 frames survived = 1 point", width / 2, height / 2 + 150);
+
+        // Exit option
+        textSize(20);
+        fill(255);
+        text("Press 'x' to exit help menu", width / 2, height / 2 + 220);
     }
 
     public static void main(String[] args) {
