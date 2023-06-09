@@ -6,7 +6,7 @@ public class Main extends PApplet {
     private final int height = 700;
     public Human human = new Human();
     public Block block = new Block(0, 0, 0, 0, 0);
-    public int life = 15; // equal to 5
+    public int life = 15;
     public int score = 0;
     public boolean gameOver = false;
     public boolean startMenu = true;
@@ -15,7 +15,7 @@ public class Main extends PApplet {
 
     public void setup() {
         pApplet = this;
-        human.humanBody();
+        human.Body();
         block.makeBlocks();
         emojiFont = createFont("Arial Unicode MS", 25);
         textFont(emojiFont);
@@ -31,7 +31,7 @@ public class Main extends PApplet {
             float humanC = human.getHeadXPos();
             float humanT = human.getHeadYPos() + human.getHeadHeight() / 2;
             float humanB = human.getHeadYPos() - human.getHeadHeight() / 2;
-            human.humanFPS();
+            human.humanDraw();
             block.showBlocks();
             // Checking hit...
             for (Block b : Block.blocks) {
@@ -119,7 +119,7 @@ public class Main extends PApplet {
         int seconds = frameCount % 60;
         String timePlayed = String.format("Time Played: %02d:%02d", minutes, seconds);
         fill(255);
-        textSize(20);
+        textSize(30);
         text(timePlayed, width / 2, height / 2 + 50);
 
         if (HighScore) {

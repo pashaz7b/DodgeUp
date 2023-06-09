@@ -14,7 +14,7 @@ public class Human implements HumanInterface {
         private float headXPos;
         private float headYPos;
 
-        public void humanBody() {
+        public void Body() {
             // Creating character
             bodyColor = Main.pApplet.color(255, 0, 0);
             headColor = Main.pApplet.color(255, 0, 0);
@@ -28,11 +28,11 @@ public class Human implements HumanInterface {
             headYPos = 477;
         }
 
-        public void humanFPS() {
+        public void humanDraw() {
             // Update position based on mouse cursor
             xPos = Main.pApplet.mouseX;
             yPos = Main.pApplet.mouseY;
-//        head position
+            // head position
             headXPos = xPos;
             // Draw body
             Main.pApplet.stroke(0);
@@ -57,9 +57,6 @@ public class Human implements HumanInterface {
             Main.pApplet.strokeWeight(1);
             Main.pApplet.line(headXPos - headWidth / 2, 477, headXPos + headWidth / 2, 477);
         }
-
-        // ...remaining methods unchanged
-
 
     public float getXPos() {
         return xPos;

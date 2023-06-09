@@ -1,3 +1,3 @@
 public interface HumanInterface {
-    void humanFPS();
+    void humanDraw();
 }

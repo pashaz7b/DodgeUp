@@ -16,7 +16,7 @@ public class Background {
     }
 
     public static void setScore() {
-        background.textSize(25);
+        background.textSize(23);
         background.fill(5);
         background.text("score : " + background.frameCount / 10,50 , 30);
     }
