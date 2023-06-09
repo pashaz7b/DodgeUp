@@ -26,7 +26,8 @@ public class Main extends PApplet {
             drawStartMenu();
             keyPressed();
         } else if (!gameOver) {
-            background.setBackGround();
+            Background.setBackGround();
+            mousePressed();
             float humanC = human.getHeadXPos();
             float humanT = human.getHeadYPos() + human.getHeadHeight() / 2;
             float humanB = human.getHeadYPos() - human.getHeadHeight() / 2;
@@ -40,6 +41,7 @@ public class Main extends PApplet {
                 float blockB = b.getBlockY() - b.getHeight() / 2;
                 if (humanC >= blockL && humanC <= blockR && humanT < blockT && humanB > blockB) {
                     life--;
+                    Background.hitDamage();
                     if (life <= 1) {
                         score = frameCount / 10;
                         gameOver = true;
@@ -51,7 +53,7 @@ public class Main extends PApplet {
             for (Block tempBlock : Block.blocks) {
                 tempBlock.setBlockY(tempBlock.getBlockY() + 3);
             }
-            background.setScore();
+            Background.setScore();
             for (int i = 0; i < life / 3; i++) {
                 text("❤️", 295 + i * 20, 30);
             }
@@ -181,6 +183,15 @@ public class Main extends PApplet {
         textSize(20);
         fill(255);
         text("Press 'x' to exit help menu", width / 2, height / 2 + 220);
+    }
+
+    public void mousePressed(){
+        if (mouseButton == RIGHT) {
+            int r = (int) random(256);
+            int g = (int) random(256);
+            int b = (int) random(256);
+            background(r, g, b);
+        }
     }
 
     public static void main(String[] args) {
